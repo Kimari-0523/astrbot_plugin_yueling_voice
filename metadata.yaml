@@ -1,0 +1,10 @@
+name: astrbot_plugin_yueling_voice
+display_name: 柚铃语音助手
+desc: 自动回复与@回复独立设置文字、语音或随机；中英日分段配音，保留上下文
+version: v1.3.0
+author: Kimari-0523
+support_platforms:
+  - qq_official
+  - aiocqhttp
+astrbot_version: '>=4.28,<5'
+repo: https://github.com/Kimari-0523/astrbot_plugin_yueling_voice

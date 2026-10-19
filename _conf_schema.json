@@ -1,0 +1,28 @@
+{
+  "enabled": {"description":"语音回复总开关","type":"bool","default":true,"hint":"关闭后停止本插件发语音，仍能识别收到的语音并正常用文字聊天。语音识别开关在配置文件→语音识别中独立调整。"},
+  "separate_triggers": {"description":"按自动和@分开设置","type":"bool","default":true,"hint":"开启后群聊使用下面两个独立设置入口；不会主动增加回复次数或改变原来的唤醒规则。"},
+  "automatic_reply": {"description":"自动回复设置","type":"object","hint":"没有真正@机器人时，机器人原本就会触发的群聊AI回复。","items":{
+    "mode":{"description":"自动回复形式","type":"string","default":"仅语音","options":["仅文字","仅语音","文字+语音","随机"],"hint":"随机：按本入口概率决定仅语音或仅文字。合成失败保留文字，超过朗读上限时保留完整文字。"},
+    "random_probability":{"description":"自动回复：随机发语音概率（0—100%）","type":"int","default":20}
+  }},
+  "mention_reply": {"description":"@回复设置","type":"object","hint":"只识别真正@机器人的消息；@别人、@全体或引用消息里的@不计入。","items":{
+    "mode":{"description":"@回复形式","type":"string","default":"仅文字","options":["仅文字","仅语音","文字+语音","随机"],"hint":"随机：按本入口概率决定仅语音或仅文字。/语音 指令仍可手动朗读指定内容。"},
+    "random_probability":{"description":"@回复：随机发语音概率（0—100%）","type":"int","default":20}
+  }},
+  "reply_mode": {"description":"私聊／未分场景时的语音方式","type":"string","default":"按需","options":["仅文字","按需","每次","随机"],"hint":"分开设置开启时仅影响私聊；关闭分开设置后也用于群聊。按需：收到语音或明确要求时附带语音。每次和随机模式保留文字。"},
+  "context_guard_enabled": {"description":"回答优先衔接当前问题和会话上下文","type":"bool","default":true,"hint":"保留现有历史、人格和记忆；优先理解当前发言者及明确引用，指代不明或识别不清先询问。此规则不随语音回复总开关关闭。"},
+  "auto_language_voice": {"description":"启用分语言音色设置","type":"bool","default":true,"hint":"开启后使用下方中英日音色及参数；关闭后全部沿用原生提供商音色。"},
+  "speech_language": {"description":"朗读语言","type":"string","default":"自动识别","options":["自动识别","中文","英文","日语"],"hint":"默认按本轮答复主要语言选音色；也可手动固定朗读语言，不会翻译或改变文字。纯汉字日语短句识别不准时可手动选日语。"},
+  "chinese_voice": {"description":"中文音色","type":"string","default":"跟随提供商","options":["跟随提供商","zh-CN-XiaoyiNeural","zh-CN-XiaoxiaoNeural"],"hint":"跟随提供商：保留当前晓伊。Xiaoyi 为活泼可爱女声，Xiaoxiao 为温柔自然女声。"},
+  "chinese_pitch": {"description":"中文音调","type":"string","default":"","hint":"留空保持当前提供商设置（当前 +12Hz）；+0Hz 为原音调。"},
+  "chinese_rate": {"description":"中文语速","type":"string","default":"","hint":"留空保持当前提供商设置（当前 +4%）；+0% 为原速。"},
+  "english_voice": {"description":"英文音色","type":"string","default":"en-US-AnaNeural","options":["en-US-AnaNeural","en-US-JennyNeural","en-US-EmmaMultilingualNeural","en-US-AvaMultilingualNeural"],"hint":"当前 Ana 为可爱童声；Jenny、Emma、Ava 为其他女声选项。"},
+  "english_pitch": {"description":"英文音调","type":"string","default":"+0Hz","hint":"Ana 默认原音调；例如 +10Hz 稍提高。必须带正负号及 Hz。"},
+  "english_rate": {"description":"英文语速","type":"string","default":"+0%","hint":"+0% 为原速，-5% 稍慢，+5% 稍快。必须带正负号及 %。"},
+  "japanese_voice": {"description":"日语音色","type":"string","default":"ja-JP-NanamiNeural","options":["ja-JP-NanamiNeural","en-US-EmmaMultilingualNeural","en-US-AvaMultilingualNeural"],"hint":"Nanami 为日语女声；Emma、Ava 为支持日语的多语言女声，可切换试听。"},
+  "japanese_pitch": {"description":"日语音调","type":"string","default":"+20Hz","hint":"+0Hz 为原音调，+20Hz 或 +45Hz 提高音调。以输入框中的已保存值为准。正负号及 Hz 不可省略。"},
+  "japanese_rate": {"description":"日语语速","type":"string","default":"+6%","hint":"+0% 为原速，负值稍慢，正值稍快。以输入框中的已保存值为准。正负号及 % 不可省略。"},
+  "random_probability": {"description":"私聊／未分场景：随机语音概率（0—100%）","type":"int","default":20},
+  "max_speech_chars": {"description":"单次朗读字数上限（80—1200）","type":"int","default":600,"hint":"默认600字。混合语言按段分别配音后合并成一条语音，不会在160字处截掉后面的日语段。超过上限时保留完整文字，语音末尾用对应语言提示。"},
+  "group_whitelist": {"description":"群白名单（留空为全部群，沿用机器人原有唤醒规则）","type":"list","default":[]}
+}

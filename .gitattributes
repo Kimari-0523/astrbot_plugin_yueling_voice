@@ -1,0 +1,4 @@
+* text=auto eol=lf
+.test-work/ export-ignore
+__pycache__/ export-ignore
+.ruff_cache/ export-ignore
